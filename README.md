@@ -18,7 +18,7 @@ Scripts takes in a `csv` file with domain names in the form of [example file](./
 > The script was tested on Windows 11 OS and deemed working, may require small adjustements for Linux OS.
 
 ## Vagrant commands
-All commands to be used while inside the project directory or any of its subdirectories: `(C:)/path/to/project/badawczy/`.
+All commands to be used while inside the project directory or any of its subdirectories: `(C:)/path/to/project/DNSSecExt/`.
 
 Vagrant virtual environment can be launched with command:
 ```
