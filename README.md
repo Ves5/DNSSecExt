@@ -13,7 +13,9 @@ There is available `--help` command for the script.
 ```
 python3 dnstest.py --help
 ```
-Scripts takes in a `csv` file with domain names in the form of [example file](./client/test_domains.csv) and a list of nameserver IP addresses then resolves names and writes results to a `csv` file.
+Scripts takes in a `csv` file with domain names and a nameserver IP addresses then resolves names and writes results to a `csv` file.
+
+It's possible to specify a range of domains from the file to be tested.
 
 > The script was tested on Windows 11 OS and deemed working, may require small adjustements for Linux OS.
 
