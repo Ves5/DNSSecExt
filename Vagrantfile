@@ -22,7 +22,7 @@ sudo apt update
 #sudo echo "export PATH=$PATH:/usr/local/go/bin" >> ~/.profile
 #rm go1.19.1.linux-amd64.tar.gz
 echo "Intalling AdGuard DNS Proxy..."
-curl -OL https://github.com/AdguardTeam/dnsproxy/releases/download/v0.46.2/dnsproxy-linux-amd64-v0.46.2.tar.gz && rm dnsproxy-linux-amd64-v0.46.2.tar.gz &&  && cd dnsproxy/
+curl -OL https://github.com/AdguardTeam/dnsproxy/releases/download/v0.46.2/dnsproxy-linux-amd64-v0.46.2.tar.gz && tar -xf dnsproxy-linux-amd64-v0.46.2.tar.gz && rm dnsproxy-linux-amd64-v0.46.2.tar.gz && cd linux-amd64/
 ./dnsproxy --version
 echo "Proxy done!"
 SCRIPT
@@ -53,12 +53,12 @@ Vagrant.configure("2") do |config|
         #proxy.vm.synced_folder "../pc" "/vm"
         proxy.vm.provision "shell", inline: $proxy_script
     end
-    config.vm.define "server" do |server|
-        server.vm.box = "bento/ubuntu-20.04"
-        server.vm.network "private_network", ip: "192.168.53.53"
-        server.vm.hostname = "server"
-        server.vm.network "forwarded_port", guest: 3000, host: 3000
-        client.vm.synced_folder "server", "/server"
-        server.vm.provision "shell", inline: $server_script
-    end
+    # config.vm.define "server" do |server|
+    #     server.vm.box = "bento/ubuntu-20.04"
+    #     server.vm.network "private_network", ip: "192.168.53.53"
+    #     server.vm.hostname = "server"
+    #     server.vm.network "forwarded_port", guest: 3000, host: 3000
+    #     client.vm.synced_folder "server", "/server"
+    #     server.vm.provision "shell", inline: $server_script
+    # end
 end
