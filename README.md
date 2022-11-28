@@ -19,6 +19,20 @@ It's possible to specify a range of domains from the file to be tested.
 
 > The script was tested on Windows 11 OS and deemed working, may require small adjustements for Linux OS.
 
+### Proxy
+
+Used addresses of public resolvers:
+* CloudFlare:
+    * Do53: 1.1.1.1:53
+    * DoT: tls://one.one.one.one
+    * DoH: https://cloudflare-dns.com/dns-query
+    * DoH3: h3://cloudflare-dns.com/dns-query
+* Google:
+    * Do53: 8.8.8.8:53
+    * DoT: tls://dns.google
+    * DoH: https://dns.google/dns-query
+    * DoH3: h3://dns.google/dns-query
+
 ## Vagrant commands
 All commands to be used while inside the project directory or any of its subdirectories: `(C:)/path/to/project/DNSSecExt/`.
 
