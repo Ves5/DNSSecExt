@@ -34,8 +34,9 @@ echo "Installing AdGuardHome..."
 curl -s -S -L https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh | sh -s -- -v
 sudo service AdGuardHome stop
 cd /opt/AdGuardHome/
-# sudo ./AdGuardHome -c /server/serverConfig.yaml -s start
-echo "Server done!"
+sudo cp /server/serverConfig.yaml ./AdGuardHome.yaml
+sudo ./AdGuardHome -s start
+echo "Server Launched!"
 SCRIPT
 
 Vagrant.configure("2") do |config|
