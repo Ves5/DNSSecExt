@@ -53,12 +53,12 @@ Vagrant.configure("2") do |config|
         #proxy.vm.synced_folder "../pc" "/vm"
         proxy.vm.provision "shell", inline: $proxy_script
     end
-    # config.vm.define "server" do |server|
-    #     server.vm.box = "bento/ubuntu-20.04"
-    #     server.vm.network "private_network", ip: "192.168.53.53"
-    #     server.vm.hostname = "server"
-    #     server.vm.network "forwarded_port", guest: 3000, host: 3000
-    #     client.vm.synced_folder "server", "/server"
-    #     server.vm.provision "shell", inline: $server_script
-    # end
+    config.vm.define "server" do |server|
+        server.vm.box = "bento/ubuntu-20.04"
+        server.vm.network "private_network", ip: "192.168.53.53"
+        server.vm.hostname = "server"
+        server.vm.network "forwarded_port", guest: 3000, host: 3000
+        server.vm.synced_folder "server", "/server"
+        server.vm.provision "shell", inline: $server_script
+    end
 end

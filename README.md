@@ -32,6 +32,19 @@ Used addresses of public resolvers:
     * DoT: tls://dns.google
     * DoH: https://dns.google/dns-query
     * DoH3: h3://dns.google/dns-query
+* AdGuard Home self-hosted Server:
+    * Do53: 192.168.53.53:53
+    * DoT: tls://certed.domain.name
+    * DoH: https://certed.domain.name/dns-query
+    * Doh3: h3://certed.domain.name/dns-query
+
+### Server
+
+https://davidaugustat.com/web/set-up-lets-encrypt-on-intranet-website for server certificate that's allowed by AdGuardHome, requires owning a publicly available domain (not server itself).
+
+With current server and environment configuration, web dashboard can be accessed via http://localhost:3000 with credentials:
+* Login: `admin`
+* Password: `admin000`
 
 ## Vagrant commands
 All commands to be used while inside the project directory or any of its subdirectories: `(C:)/path/to/project/DNSSecExt/`.
