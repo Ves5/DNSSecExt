@@ -42,21 +42,21 @@ SCRIPT
 Vagrant.configure("2") do |config|
     config.vm.define "client" do |client|
         client.vm.box = "bento/ubuntu-20.04"
-        client.vm.network "private_network", ip: "192.168.53.11"
+        client.vm.network "public_network", ip: "192.168.53.11"
         client.vm.hostname = "client"
         client.vm.synced_folder "client/synced", "/client"
         client.vm.provision "shell", inline: $client_script
     end
     config.vm.define "proxy" do |proxy|
         proxy.vm.box = "bento/ubuntu-20.04"
-        proxy.vm.network "private_network", ip: "192.168.53.10"
+        proxy.vm.network "public_network", ip: "192.168.53.10"
         proxy.vm.hostname = "proxy"
         #proxy.vm.synced_folder "../pc" "/vm"
         proxy.vm.provision "shell", inline: $proxy_script
     end
     config.vm.define "server" do |server|
         server.vm.box = "bento/ubuntu-20.04"
-        server.vm.network "private_network", ip: "192.168.53.53"
+        server.vm.network "public_network", ip: "192.168.53.53"
         server.vm.hostname = "server"
         server.vm.network "forwarded_port", guest: 3000, host: 3000
         server.vm.synced_folder "server", "/server"

@@ -51,11 +51,11 @@ def query(domains: List[str], nameservers: List[str]) -> List[float]:
     total = len(domains)
     for domain in progressBar(domains, prefix='Resolving domains | Progress:', suffix='Complete', length=50):
         try:
-            #t0 = perf_counter()
+            t0 = perf_counter()
             res = resolver.resolve(domain, 'A')
-            #t1 = perf_counter()
-            #results.append(t1 - t0)
-            results.append(res.response.time)
+            t1 = perf_counter()
+            results.append(t1 - t0)
+            #results.append(res.response.time)
         except Exception:
             results.append(0)
             total -= 1
@@ -91,14 +91,20 @@ if __name__ == "__main__":
     # parse args
     parser = argparser_init()
     args = parser.parse_args()
-    # read CSV file with domains into memory?
+    # read CSV file with domains into memory
     domains = p.read_csv(args.input, header=None)[1].values.tolist()
     start = args.range_start if args.range_start >= 0 and args.range_start < len(domains) else 0
     end = args.range_end if args.range_end > 0 and args.range_start <= len(domains) else len(domains)
-    #print(domains)
-    results, total = query(domains[start:end], args.nameservers)
-    print(f"Average time {(sum(results) / total):.5f} s per query for total {total} queries in range {start} to {end}.")
-    results = p.DataFrame(results)
-    #print(results)
+
+    results1, total = query(domains[start:end], args.nameservers)
+    avg1 = (sum(results1) / total)
+    results2, total = query(domains[start:end], args.nameservers)
+    avg2 = (sum(results2) / total)
+    #print(f"Average time {(sum(results1) / total):.5f} s per query for total {total} queries in range {start} to {end}.")
+    results = p.DataFrame(results1)
+    results[len(results.columns)] = results2
     results.to_csv(args.output, header=False)
+    
+    with open('./avg.csv', 'a') as f:
+        f.write(f"run, {avg1}, {avg2}\n")
     exit(0)
