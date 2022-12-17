@@ -82,6 +82,9 @@ def argparser_init() -> argparse.ArgumentParser:
     optional.add_argument('-e', '--end', action='store', default=0,
                           dest='range_end', type=int,
                           help='end of range of domain names in the file; by default till end of file')
+    optional.add_argument('-l', '--label', action='store', default='run',
+                          dest='label', type=str,
+                          help='Name of the run')
     
     return parser
 
@@ -106,5 +109,5 @@ if __name__ == "__main__":
     results.to_csv(args.output, header=False)
     
     with open('./avg.csv', 'a') as f:
-        f.write(f"run, {avg1}, {avg2}\n")
+        f.write(f"{args.label}, {avg1}, {avg2}\n")
     exit(0)
